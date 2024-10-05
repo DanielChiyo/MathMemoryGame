@@ -36,6 +36,6 @@ override.tf.json
 .terraformrc
 terraform.rc
 
-#.exe
-**/.infracost.exe
-**/.terraform.exe
+# Ignore terraform.exe and infracost.exe in any directory
+**/terraform.exe
+**/infracost.exe
