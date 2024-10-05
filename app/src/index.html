@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Brain rats</title>
+</head>
+<body>
+    <span id="question">1+1=</span>
+    <input type="number" id="answer" onkeydown="checkEnter(event)">
+
+    <script>
+        var expectedAnswer = null;
+        generateQuestion();
+
+        // Pre-condition: A positive integer.
+        // Post-condition: An integer in the range [0, max-1] is returned.
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+        function getRandomSingleDigitPositiveInt() {
+            return getRandomInt(9)+1
+        }
+        // Post-condition: A new question is generated and its answer is saved in expectedAnswer.
+        function generateQuestion() {
+            var x = getRandomSingleDigitPositiveInt();
+            var y = getRandomSingleDigitPositiveInt();
+            expectedAnswer = x + y;
+            document.getElementById("question").innerHTML = "" + x + " + " + y + " = ";
+        }
+        function clearAnswer() {
+            document.getElementById("answer").value = null;
+            document.getElementById("answer").placeholder = "";
+        }
+        function getAnswer() {
+            return document.getElementById("answer").value;
+        }
+        function handleRightAnswer() {
+            generateQuestion();
+            clearAnswer();
+        }
+        function handleWrongAnswer(wrongAnswer) {
+            clearAnswer();
+            document.getElementById("answer").placeholder = wrongAnswer;
+        }
+        function checkEnter(event) {
+            if (event.keyCode === 13 || event.key === "Enter") {
+                var answer = getAnswer();
+                if (expectedAnswer == answer) {
+                    handleRightAnswer();
+                } else {
+                    handleWrongAnswer(answer);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
