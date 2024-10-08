@@ -1,7 +1,7 @@
-variable name {
-  type        = string
-  default     = ""
-  description = "The id of the vpc used in the cluster"
+variable subnet_ids {
+    type        = list
+    default     = []
+    description = "Subnet ids for service usage"
 }
 
 variable environment {
@@ -27,22 +27,10 @@ variable vpc_id {
   description = "VPC id for the ECS cluster SG"
 }
 
-variable asg_subnet_ids {
-    type        = list
-    default     = []
-    description = "Subnet ids for ASG usage"
-}
-
-variable ecs_cluster_name {
+variable ecs_cluster_id {
   type        = string
-  description = "Name prefix for the ecs cluster"
-  nullable = false
-}
-
-variable ecs_ami {
-  type        = string
-  description = "The ECS ami. Reference this link for to find https://docs.aws.amazon.com/pt_br/AmazonECS/latest/developerguide/launch_container_instance.html"
-  nullable = false
+  default     = ""
+  description = "The id of the ECS Cluster used for this service"
 }
 
 variable ecs_capacity_provider_name {
@@ -50,4 +38,3 @@ variable ecs_capacity_provider_name {
   default     = ""
   description = "The name of the ECS capacity provider to be used for this service"
 }
-
