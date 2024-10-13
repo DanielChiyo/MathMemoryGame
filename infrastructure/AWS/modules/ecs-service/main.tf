@@ -5,6 +5,7 @@ data "aws_iam_role" "ecsTaskExecutionRole" {
 resource "aws_ecs_task_definition" "ecs_task_definition" {
  family             = "my-ecs-task"
  network_mode       = "awsvpc"
+ requires_compatibilities = ["EC2"]
  execution_role_arn = data.aws_iam_role.ecsTaskExecutionRole.arn
  cpu                = 1024
  runtime_platform {
