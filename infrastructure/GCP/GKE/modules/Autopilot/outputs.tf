@@ -1,9 +1,5 @@
 data "google_client_config" "default" {}
 
-output name {
-  value       = "teste"
-}
-
 output host {
   value       = "https://${google_container_cluster.default.endpoint}"
 }

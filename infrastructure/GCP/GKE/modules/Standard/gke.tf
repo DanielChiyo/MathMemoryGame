@@ -23,6 +23,16 @@ resource "google_container_cluster" "primary" {
   subnetwork = google_compute_subnetwork.subnet.name
 
   deletion_protection = false
+
+  # Add lifecycle block to ignore changes to tags
+  lifecycle {
+    ignore_changes = [
+      node_config  
+      #Since default node pool will be deleted we ignore changes on it.
+      #Other wise it would compare to the managed node pool
+      #And trigger unwanted/unnecessary changes or even replacements
+    ]
+  }
 }
 
 # Separately Managed Node Pool
