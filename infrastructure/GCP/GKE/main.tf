@@ -44,5 +44,5 @@ provider "helm" {
 
 module "argocd" {
   source = "../../Kubernetes/ArgoCD"
-  depends_on = [module.gke-cluster]
+  depends_on = [module.gke-standard]
 }
