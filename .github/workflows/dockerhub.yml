@@ -32,12 +32,11 @@ jobs:
       # Step 4: Build and tag the image with the commit hash
       - name: Build and push Docker image with commit hash
         id: build
-        working-directory: ./app/src   # Specify the context for the build
         run: |
           COMMIT_HASH=$(git rev-parse --short HEAD)  # Get the short commit hash
           IMAGE_TAG="${{ vars.DOCKERHUB_USERNAME }}/mmg-web-app:$COMMIT_HASH"
           echo "Building and pushing image with tag: $IMAGE_TAG"
-          docker build -t $IMAGE_TAG ./app/src
+          docker build -t $IMAGE_TAG ./  # Use current working directory as context
           docker push $IMAGE_TAG
 
       # Step 5: Update Kubernetes deployment with the new image version (commit hash)
