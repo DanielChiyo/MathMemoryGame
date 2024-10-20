@@ -13,7 +13,7 @@ spec:
         app: mmg-web-app
     spec:
       containers:
-      - image: chiyodaniel/mmg-web-app:e45dcd2
+      - image: chiyodaniel/mmg-web-app:62bac34
         name: mmg-web-container
         imagePullPolicy: Always  # Ensure the latest image is pulled every time
         ports:
