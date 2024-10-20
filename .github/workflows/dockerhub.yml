@@ -39,22 +39,25 @@ jobs:
           docker build -t $IMAGE_TAG ./  # Use current working directory as context
           docker push $IMAGE_TAG
 
-      # Step 5: Change working directory to the root for the manifest update
-      - name: Change to root directory for manifest update
-        run: cd ../..  # Change to the root directory of the repository
+      # Step 5: Verify if the manifests directory exists in the root and check contents
+      - name: List contents of the root directory
+        run: |
+          echo "Listing the root of the repository"
+          ls -R  # List the directory structure to help debug the location of manifests
 
       # Step 6: Update Kubernetes deployment with the new image version (commit hash)
       - name: Update Kubernetes manifest with new image version
         run: |
           COMMIT_HASH=$(git rev-parse --short HEAD)
           echo "Updating Kubernetes manifest with image tag: $COMMIT_HASH"
-          sed -i "s|image: .*mmg-web-app:.*|image: ${{ vars.DOCKERHUB_USERNAME }}/mmg-web-app:$COMMIT_HASH|" ./manifests/app.yml  # Correct relative path from root
-
+          # Ensure the path is correct by using the absolute path (you can switch back later)
+          sed -i "s|image: .*mmg-web-app:.*|image: ${{ vars.DOCKERHUB_USERNAME }}/mmg-web-app:$COMMIT_HASH|" /home/runner/work/repo-name/repo-name/manifests/app.yml
+          
       # Step 7: Commit and push the updated manifest
       - name: Commit and push updated manifest
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add ./manifests/app.yml  # Correct relative path from root
+          git add /home/runner/work/repo-name/repo-name/manifests/app.yml  # Ensure the path is correct
           git commit -m "Update image tag to $COMMIT_HASH"
           git push origin main
