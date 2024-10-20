@@ -54,3 +54,5 @@ jobs:
           git add ../../manifests/app.yaml  # Correct relative path to ../../manifests/app.yaml
           git commit -m "Update image tag to $COMMIT_HASH"
           git push origin main
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/DanielChiyo/MathMemoryGame.git HEAD:main
+
