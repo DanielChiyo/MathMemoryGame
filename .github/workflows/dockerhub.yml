@@ -49,6 +49,7 @@ jobs:
       # Step 6: Commit and push the updated manifest
       - name: Commit and push updated manifest
         run: |
+          COMMIT_HASH=$(git rev-parse --short HEAD)
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add ../../manifests/app.yaml  # Correct relative path to ../../manifests/app.yaml
