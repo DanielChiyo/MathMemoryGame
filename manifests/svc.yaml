@@ -10,7 +10,7 @@ spec:
   selector:
     app: mmg-web-app
   ports:
-    - port: 80
+    - port: 443
       targetPort: mmg-web-app-svc
   type: LoadBalancer
   loadBalancerIP: 34.133.55.231 #static IP address of the application

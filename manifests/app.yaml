@@ -16,5 +16,5 @@ spec:
       - image: chiyodaniel/mmg-web-app:latest
         name: mmg-web-container
         ports:
-        - containerPort: 80
+        - containerPort: 443
           name: mmg-web-app-svc
