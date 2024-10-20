@@ -39,21 +39,14 @@ jobs:
           docker build -t $IMAGE_TAG ./  # Use current working directory as context
           docker push $IMAGE_TAG
 
-      - name: Debug Check current directory
-        run: |
-          echo "Current working directory: $(pwd)"
-          echo "Changing directory to the root..."
-          cd ../../
-          echo "New directory: $(pwd)"
-          ls
-
       # Step 5: Update Kubernetes deployment with the new image version (commit hash)
       - name: Update Kubernetes manifest with new image version
         run: |
+          cd ../../manifests
           echo "Current working directory: $(pwd)"
           COMMIT_HASH=$(git rev-parse --short HEAD)
           echo "Updating Kubernetes manifest with image tag: $COMMIT_HASH"
-          sed -i "s|image: .*mmg-web-app:.*|image: ${{ vars.DOCKERHUB_USERNAME }}/mmg-web-app:$COMMIT_HASH|" manifests/app.yml
+          sed -i "s|image: .*mmg-web-app:.*|image: ${{ vars.DOCKERHUB_USERNAME }}/mmg-web-app:$COMMIT_HASH|" app.yml
 
       # Step 6: Commit and push the updated manifest
       - name: Commit and push updated manifest
