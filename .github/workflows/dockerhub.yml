@@ -44,7 +44,7 @@ jobs:
         run: |
           COMMIT_HASH=$(git rev-parse --short HEAD)
           echo "Updating Kubernetes manifest with image tag: $COMMIT_HASH"
-          sed -i "s|image: .*mmg-web-app:.*|image: ${{ vars.DOCKERHUB_USERNAME }}/mmg-web-app:$COMMIT_HASH|" ../manifests/app.yml  # Correct the path to the manifest
+          sed -i "s|image: .*mmg-web-app:.*|image: ${{ vars.DOCKERHUB_USERNAME }}/mmg-web-app:$COMMIT_HASH|" ../../manifests/app.yml  # Correct the path to the manifest
 
       # Step 6: Commit and push the updated manifest
       - name: Commit and push updated manifest
