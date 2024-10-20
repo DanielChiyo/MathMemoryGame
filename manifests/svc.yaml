@@ -13,4 +13,4 @@ spec:
     - port: 80
       targetPort: mmg-web-app-svc
   type: LoadBalancer
-  
+  loadBalancerIP: 34.133.55.231 #static IP address of the application
