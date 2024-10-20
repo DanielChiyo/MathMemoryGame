@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: guestbook-ui
+  name: mmg-web-app-deployment
 spec:
-  replicas: 1
-  revisionHistoryLimit: 3
+  replicas: 2
   selector:
     matchLabels:
-      app: guestbook-ui
+      app: mmg-web-app
   template:
     metadata:
       labels:
-        app: guestbook-ui
+        app: mmg-web-app
     spec:
       containers:
       - image: gcr.io/gcp-certification-lab-435613/mmg-web-app:latest
-        name: guestbook-ui
+        name: mmg-web-container
         ports:
         - containerPort: 80
+          name: mmg-web-app-svc
