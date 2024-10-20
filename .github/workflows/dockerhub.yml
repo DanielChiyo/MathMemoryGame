@@ -42,12 +42,9 @@ jobs:
       # Step 5: Update Kubernetes deployment with the new image version (commit hash)
       - name: Update Kubernetes manifest with new image version
         run: |
-          cd ../../manifests
-          echo "Current working directory: $(pwd)"
-          ls
           COMMIT_HASH=$(git rev-parse --short HEAD)
           echo "Updating Kubernetes manifest with image tag: $COMMIT_HASH"
-          sed -i "s|image: .*mmg-web-app:.*|image: ${{ vars.DOCKERHUB_USERNAME }}/mmg-web-app:$COMMIT_HASH|" app.yml
+          sed -i "s|image: .*mmg-web-app:.*|image: ${{ vars.DOCKERHUB_USERNAME }}/mmg-web-app:$COMMIT_HASH|" ../../manifests/app.yaml
 
       # Step 6: Commit and push the updated manifest
       - name: Commit and push updated manifest
