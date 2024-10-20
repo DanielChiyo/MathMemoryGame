@@ -55,4 +55,4 @@ jobs:
           git commit -m "Update image tag to $COMMIT_HASH"
           git push origin main HEAD:${{ github.ref }}
         env: 
-          GITHUB_TOKEN: ${{ secrets_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
