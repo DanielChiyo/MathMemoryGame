@@ -51,6 +51,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add ../../manifests/app.yml  # Correct relative path to ../../manifests/app.yml
+          git add ../../manifests/app.yml  # Correct relative path to ../../manifests/app.yaml
           git commit -m "Update image tag to $COMMIT_HASH"
           git push origin main
