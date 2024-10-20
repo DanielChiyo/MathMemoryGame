@@ -53,6 +53,6 @@ jobs:
           git config --local user.name "GitHub Action"
           git add ../../manifests/app.yaml  # Correct relative path to ../../manifests/app.yaml
           git commit -m "Update image tag to $COMMIT_HASH"
-          git push origin main
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/DanielChiyo/MathMemoryGame.git HEAD:main
-
+          git push origin main HEAD:${{ github.ref }}
+        env: 
+          GITHUB_TOKEN: ${{ secrets_GITHUB_TOKEN }}
