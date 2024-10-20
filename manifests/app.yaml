@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mmg-web-app-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mmg-web-app
+  template:
+    metadata:
+      labels:
+        app: mmg-web-app
+    spec:
+      containers:
+        - name: mmg-web-app-container
+          image: gcr.io/gcp-certification-lab-435613/mmg-web-app:latest
+          ports:
+            - containerPort: 80
+              name: mmg-web-app-svc
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+            readOnlyRootFilesystem: false
+            capabilities:
+              add: []
+              drop:
+                - NET_RAW
+          livenessProbe:
+            httpGet:
+              path: "/"
+              port: mmg-web-app-svc
+              httpHeaders:
+                - name: X-Custom-Header
+                  value: Awesome
+            initialDelaySeconds: 3
+            periodSeconds: 3
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      tolerations:
+        - effect: NoSchedule
+          key: kubernetes.io/arch
+          operator: Equal
+          value: amd64
