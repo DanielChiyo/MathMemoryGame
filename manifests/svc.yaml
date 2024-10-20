@@ -2,8 +2,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mmg-web-app-loadbalancer
-  # annotations:
-  #   networking.gke.io/load-balancer-type: "Internal" # Remove to create an external loadbalancer
+  annotations:
+    cloud.google.com/load-balancer-ipv4: "mmg-lb-ip"  # Use the static IP here
+  #  networking.gke.io/load-balancer-type: "Internal" # Remove to create an external loadbalancer
 spec:
   selector:
     app: mmg-web-app
