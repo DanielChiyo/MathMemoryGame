@@ -3,8 +3,9 @@ kind: Service
 metadata:
   name: mmg-web-app-loadbalancer
   annotations:
-    cloud.google.com/load-balancer-ipv4: "mmg-lb-ip"  # Use the static IP here
-  #  networking.gke.io/load-balancer-type: "Internal" # Remove to create an external loadbalancer
+    cloud.google.com/load-balancer-ipv4: "projects/gcp-certification-lab-435613/regions/us-central1/addresses/mmg-lb-ip"
+    #kubernetes.io/ingress.global-static-ip-name: "mmg-lb-ip"
+  #   networking.gke.io/load-balancer-type: "Internal" # Remove to create an external loadbalancer
 spec:
   selector:
     app: mmg-web-app
@@ -12,3 +13,4 @@ spec:
     - port: 80
       targetPort: mmg-web-app-svc
   type: LoadBalancer
+  loadBalancerIP: 34.133.55.231 #static IP address of the application
