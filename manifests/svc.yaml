@@ -7,7 +7,6 @@ metadata:
 spec:
   selector:
     app: mmg-web-app
-  ipFamilyPolicy: RequireDualStack
   ports:
     - port: 80
       targetPort: mmg-web-app-svc
