@@ -28,6 +28,6 @@ jobs:
         name: Build and push
         working-directory: 
         uses: docker/build-push-action@v6
-        with: ./app/src
+        with: "./app/src"
           push: true
           tags: ${{ vars.DOCKERHUB_USERNAME }}/mmg-web-app:latest
