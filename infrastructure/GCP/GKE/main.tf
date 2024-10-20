@@ -15,7 +15,7 @@ module "gke-standard" {
   cluster_location = "us-central1-a"
   cluster_name     = "cluster-1"
   use_spot_vms     = true
-  machine_type     = "e2-standard-4"
+  machine_type     = "e2-medium"
   gke_num_nodes    = 2
 }
 
@@ -41,6 +41,7 @@ provider "helm" {
         }
     }
 }
+
 
 module "argocd" {
   source = "../../Kubernetes/ArgoCD"

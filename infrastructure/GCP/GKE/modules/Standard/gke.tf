@@ -63,4 +63,10 @@ resource "google_container_node_pool" "primary_nodes" {
       disable-legacy-endpoints = "true"
     }
   }
+
+  lifecycle {
+    ignore_changes = [
+      version #Keeping the cluster from automatic version upgrades
+    ]
+  }
 }
