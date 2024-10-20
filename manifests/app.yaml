@@ -15,6 +15,7 @@ spec:
       containers:
       - image: chiyodaniel/mmg-web-app:latest
         name: mmg-web-container
+        imagePullPolicy: Always  # Ensure the latest image is pulled every time
         ports:
         - containerPort: 80
           name: mmg-web-app-svc
